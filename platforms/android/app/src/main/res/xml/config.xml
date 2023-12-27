@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="health.epink.app" version="1.4.4" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="Permissions">
+        <param name="android-package" value="com.android.plugins.Permissions" />
+    </feature>
+    <feature name="Camera">
+        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <allow-navigation href="cdvfile:*" />
+    <feature name="FileOpener2">
+        <param name="android-package" value="io.github.pwlin.cordova.plugins.fileopener2.FileOpener2" />
+    </feature>
+    <feature name="Geolocation">
+        <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
+    </feature>
+    <feature name="health">
+        <param name="android-package" value="org.apache.cordova.health.HealthPlugin" />
+    </feature>
+    <access origin="https://accounts.google.com/*" />
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <feature name="Capture">
+        <param name="android-package" value="org.apache.cordova.mediacapture.Capture" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic">
+        <param name="android-package" value="cordova.plugins.Diagnostic" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic_Location">
+        <param name="android-package" value="cordova.plugins.Diagnostic_Location" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic_Bluetooth">
+        <param name="android-package" value="cordova.plugins.Diagnostic_Bluetooth" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic_Wifi">
+        <param name="android-package" value="cordova.plugins.Diagnostic_Wifi" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic_Camera">
+        <param name="android-package" value="cordova.plugins.Diagnostic_Camera" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic_Notifications">
+        <param name="android-package" value="cordova.plugins.Diagnostic_Notifications" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic_NFC">
+        <param name="android-package" value="cordova.plugins.Diagnostic_NFC" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic_External_Storage">
+        <param name="android-package" value="cordova.plugins.Diagnostic_External_Storage" />
+        <param name="onload" value="true" />
+    </feature>
+    <name>EPINK HEALTH</name>
+    <description>
+       EPINK HEALTH
+    </description>
+    <author email="anantateordev@gmail.com" href="https://anantateoralbert.com">
+        Ananta Teor Albert
+    </author>
+    <content src="index.html" />
+    <icon src="res/icon.png" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <custom-preference name="android-minSdkVersion" value="24" />
+    <custom-preference name="android-targetSdkVersion" value="33" />
+    <allow-intent href="market:*" />
+    <custom-config-file parent="/*" target="AndroidManifest.xml">
+        <uses-permission android:name="android.webkit.PermissionRequest" />
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.RECORD_AUDIO" />
+        <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+        <uses-permission android:name="android.permission.CAMERA" />
+        <uses-feature android:name="android.hardware.camera" />
+        <uses-feature android:name="android.hardware.camera.autofocus" />
+    </custom-config-file>
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/splasher.png" />
+    <preference name="android-targetSdkVersion" value="33" />
+</widget>

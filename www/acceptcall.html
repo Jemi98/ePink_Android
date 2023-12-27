@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Accept Call</title>
+        <!-- Controls (optional) -->
+        <link rel="stylesheet" href="controls/styles.css">
+        <script src="controls/script.js"></script>
+        <!-- General (optional) -->
+        <link rel="stylesheet" href="general/styles.css">
+        <!-- Core -->
+        <link rel="stylesheet" href="core/styles.css">
+        <script src="core/script.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/connectycube@3.12.0/dist/connectycube.min.js"></script>
+		<!-- <script src="js/connectycube.js"></script> -->
+		 <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+		<style>
+.bottom-nav{
+   position: fixed;
+   z-index: 100000;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: white;
+   text-align: center;
+   
+   padding: 40px;
+
+}
+
+.top-nav{
+   position: fixed;
+   z-index: 100000;
+   left: 0;
+   top: 0;
+   width: 100%;
+   color: white;
+   
+   
+   padding: 40px;
+
+}
+
+.foa{
+font-size: 40px
+}
+
+.f-30{
+	font-size: 20px;
+}
+
+		</style>
+	</head>
+	
+    <body onload="initApp()">
+		<div class="top-nav">
+		<i class="fa fa-chevron-left" aria-hidden="true" style="font-size: 40px; color: grey" onclick="backHome()"></i>
+		</div>
+        <div id="Dish">
+            <div class="Camera">
+				<video id="remoteOpponentVideoElementId" height="100%" poster="img/black.png" autoplay style="width:100%">
+				</video>
+			</div>
+            <div class="Camera">
+	
+				<video id="myVideoElementId" height="100%" poster="img/black.png" style="width:100%" autoplay muted>
+				
+			</video>
+		
+			</div>
+        </div>
+		<div class="bottom-nav">
+			<i id="callbutton" class="fa fa-phone foa" aria-hidden="true" onclick="callButtonpressed()"></i>
+			<p id="callStatus" class="f-30">CONNECTING..</p>
+		</div>	
+	</body>
+	<script>
+	var tocall;
+	var doctoruid = 4484713;
+	var patientuid = 4483638;
+	var uPass = "";
+	var session;
+	function logOut(){
+		localStorage.clear();
+		location.reload();
+	}
+	const CREDENTIALS = {
+	  appId: 5070,
+	  authKey: "JNXS9GRyMGNsUgc",
+	  authSecret: "ctzmyKZecd26cJd",
+	};
+	function setLogindata(){
+		var userName = document.getElementById("username").value;
+		var userPassword = document.getElementById("password").value;
+		
+		if(userName == "patient"){
+			var params = { login:userName, password: userPassword, opponentid: patientuid };
+		}else{
+			var params = { login:userName, password: userPassword, opponentid: doctoruid };
+		}
+		var prelogin = JSON.stringify(params);
+		localStorage.setItem("cblogin", prelogin);
+		location.reload();
+	}
+	ConnectyCube.init(CREDENTIALS);
+	var callerid;
+	var opid;
+	var serverUrl = 'https://epink.health/api/callersession.php';
+	function endCall(){
+			var dataTopost = "endmycall=true&opid="+opid+"&tracker=130";
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", serverUrl, true);
+			xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			xhr.onload = function() {
+				if (xhr.status == 200) {
+					var json = xhr.responseText;
+					window.location.href= "endedcall.html";
+				   
+				} else if (xhr.status == 404) {
+					alert("Fail to connect to our server");
+				} else {
+					alert("Fail to connect to our server");
+				}
+			}
+			xhr.send(dataTopost);
+	}
+	function checkCallStatus(){
+		var dataTopost = "checkmystatus=true&opid="+opid+"&tracker=130";
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", serverUrl, true);
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.onload = function() {
+			if (xhr.status == 200) {
+				var json = xhr.responseText;
+				if(json == "Ended"){
+					window.location.href= "endedcall.html";
+				}else{
+					setTimeout(function(){ checkCallStatus();  }, 5000);
+				}
+			
+		
+			   
+			} else if (xhr.status == 404) {
+				alert("Fail to connect to our server");
+			} else {
+				alert("Fail to connect to our server");
+			}
+		}
+		xhr.send(dataTopost);
+	}
+	function initApp(){
+		var loginas = JSON.parse(localStorage.getItem("cblogin"));
+		console.log(loginas);
+		uPass = loginas.password;
+		if(loginas == null){
+			
+		}else{
+			
+			tocall = loginas.opponentid;
+			callerid = loginas.opponentid;
+			//document.getElementById("loginusername").innerHTML = loginas.login;
+
+
+				ConnectyCube.createSession()
+				.then((session) => {
+					const userCredentials = { login: loginas.login, password: loginas.password };
+					ConnectyCube.login(userCredentials)
+					  .then((user) => {
+					  opid = user.id;
+					  const userCredentials = {
+						   userId: user.id,
+						  password: uPass,
+						};
+
+						ConnectyCube.chat
+						  .connect(userCredentials)
+						  .then(() => {
+							const calleesIds = [tocall]; // User's ids
+							const sessionType = ConnectyCube.videochat.CallType.VIDEO; // AUDIO is also possible
+							const additionalOptions = {};
+							session = ConnectyCube.videochat.createNewSession(calleesIds, sessionType, additionalOptions);
+							
+
+							 							 
+						  }).catch((error) => {
+						  
+						  });
+					  
+					  })
+					  .catch((error) => {});
+				
+				})
+				.catch((error) => {});
+			
+			
+	
+		}
+}
+
+ConnectyCube.videochat.onAcceptCallListener = function (session, userId, extension) {
+	document.getElementById("callStatus").innerHTML = 'ON CALL';
+	document.getElementById("callbutton").style.color = 'red';
+	console.log(session)
+};
+ConnectyCube.videochat.onRemoteStreamListener = function (session, userID, remoteStream) {
+	document.getElementById("callStatus").innerHTML = 'ON CALL';
+	document.getElementById("callbutton").style.color = 'red';
+	session.attachMediaStream("remoteOpponentVideoElementId", remoteStream);
+	checkCallStatus();
+  
+};
+ConnectyCube.videochat.onCallListener = function (session, extension) {
+	document.getElementById("callStatus").innerHTML = 'ACCEPTING CALL';
+	document.getElementById("callbutton").style.color = 'red';
+const mediaParams = {
+							  audio: true,
+							  video: true,
+							  options: {
+								muted: true,
+								mirror: true,
+							  },
+							};
+								session
+							  .getUserMedia(mediaParams)
+							  .then((localStream) => {
+									session.attachMediaStream("myVideoElementId", localStream);
+								
+									const extensionx = {};
+									session.accept(extensionx);
+							  })
+							  .catch((error) => {});
+	
+
+	
+
+};
+ConnectyCube.videochat.onUserNotAnswerListener = function (session, userId) {
+	document.getElementById("constate").innerHTML = 'Call not answered or has been rejected by user';
+};
+ConnectyCube.videochat.onStopCallListener = function (session, userId, extension) {
+	document.getElementById("callbutton").style.color = 'red';
+	document.getElementById("callStatus").innerHTML = 'Call Ended';
+};
+function backHome(){
+var dataTopost = "endmycall=true&opid="+opid+"&tracker=130";
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", serverUrl, true);
+			xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			xhr.onload = function() {
+				if (xhr.status == 200) {
+					var json = xhr.responseText;
+					window.location.href= "index.html";
+				   
+				} else if (xhr.status == 404) {
+					alert("Fail to connect to our server");
+				} else {
+					alert("Fail to connect to our server");
+				}
+			}
+			xhr.send(dataTopost);
+	window.location.href= "index.html";
+}
+function callButtonpressed(){
+	var callButton = document.getElementById("callbutton").style.color;
+	if(callButton == "red"){
+		endCall();
+		document.getElementById("callStatus").innerHTML = 'You have ended this call';
+	}else if(callButton == "green"){
+		location.reload();
+	}
+}
+
+	
+	</script>
+	<script type="text/javascript" src="cordova.js"></script> 
+</html>

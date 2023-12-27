@@ -1,0 +1,77 @@
+.btn-block {
+	width: 100%;
+}
+.strong {
+	font-weight: bold;
+}
+.bottom-nav-text {
+	margin-top: -3px;
+	font-size: 12px;
+	color: grey;
+}
+.app-bottom-nav {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	color: white;
+	text-align: center;
+	background-color: #efefef;
+	padding-top: 10px;
+	/*box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 1), 0 3px 1px -2px rgba(0, 0, 0, 1), 0 1px 5px 0 rgba(0, 0, 0, 1);*/
+}
+
+
+.app-pad { padding:20px 20px 20px 20px }
+.app-top-nav {
+	background-color: #efefef;
+	padding:0px;
+	padding-top: 20px;
+}
+
+#main-search-container {
+	background-color: #fff;
+	border-radius: 50px;
+	border: #ccc 1px solid;
+	padding:0px 10px 0px 10px;
+}
+#main-search-container input {
+	position: relative;
+	top:3px;
+	background: #fff
+}
+#main-search-container i { top:10px; }
+.arrow-down { position: relative; top:7px; }
+.rad-15 { border-radius: 15px; }
+.top-icon-size { font-size: 60px}
+.div-ico {height:100vh;max-height:96px}
+
+.scrollmenu {
+  background-color: #fff;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.scrollmenu a {
+  color: #333;
+  text-align: center;
+	padding-right:15px;
+  text-decoration: none;
+}
+
+.scrollmenu a:hover {
+  background-color: none;
+}
+
+.places-itemcolumn {
+	z-index: 100;
+	position: relative;
+	top:-40px;
+	left:10px;
+	color:#fff
+}
+
+.desc-itemcolumn {
+	position: relative;
+	top:-20px;
+}

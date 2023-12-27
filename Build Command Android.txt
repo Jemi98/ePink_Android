@@ -1,0 +1,1 @@
+cordova build android --release -- --packageType=bundle --keystore=C:/Users/user/Documents/androidkeystore/epinkandroidkey.keystore --storePassword=RBHCGMxB --alias=epinkandroidkey --password=RBHCGMxB

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--Import Google Icon Font-->
+		<link href="css/materialicon.css" rel="stylesheet">
+		<!--Import materialize.css-->
+		<link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+		<!--  <link href="https://fonts.googleapis.com/css?family=Nunito:200" rel="stylesheet"> -->
+		<link type="text/css" rel="stylesheet" href="css/app.css" />
+		<!--Let browser know website is optimized for mobile-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<link href="css/fontawesome.css" rel="stylesheet">
+		<link href="css/brands.css" rel="stylesheet">
+		<link href="css/yong.css" rel="stylesheet">
+		<link href="css/modernization.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/connectycube@3.10.0/dist/connectycube.min.js"></script>
+		<script></script>
+		<style>
+			.row0bottom {
+				margin-bottom: 0px
+			}
+
+			.cat {
+				margin-right: 10px;
+				margin-left: 10px;
+			}
+
+			.colrow {
+				margin-bottom: 0px;
+			}
+
+			.v-icon {
+				vertical-align: middle;
+			}
+
+			::-webkit-scrollbar {
+				display: none;
+			}
+
+			.textshadow {
+				text-shadow: 1px 2px 0 #000000, 2px 1px 20px rgba(0, 0, 0, 0.87);
+			}
+
+			#map {
+				position: static !important;
+				height: 100% !important;
+				width: 100% !important;
+			}
+
+			.tnav {
+				background-color: #fff;
+				-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0), 0 3px 1px -2px rgba(0, 0, 0, 0), 0 1px 5px 0 rgba(0, 0, 0, 0);
+				box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0), 0 3px 1px -2px rgba(0, 0, 0, 0), 0 1px 5px 0 rgba(0, 0, 0, 0);
+			}
+
+			.effect {
+				height: 100%;
+				width: 100%;
+				position: fixed;
+				z-index: 10000;
+				top: 0;
+				left: 0;
+				background-color: rgb(81, 117, 85);
+				background-color: rgba(81, 117, 85, 1);
+				overflow-x: hidden;
+				transition: 0.1s;
+			}
+
+			.halal {
+				z-index: 1000;
+				position: absolute;
+				top: 0;
+				right: 0;
+				margin-top: 10px;
+				margin-right: 10px;
+			}
+
+			.bottom-copyright {
+				position: fixed;
+				z-index: 100000;
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				/* color: white; */
+				text-align: center;
+				background-color: white;
+				padding-top: 10px;
+				font-size: 8px
+			}
+
+			.endcallbutton {
+				padding-top: 10px;
+				padding-bottom: 10px;
+				padding-left: 11px;
+				padding-right: 11px;
+			}
+
+			.custom-file-input {
+				color: transparent;
+			}
+
+			.custom-file-input::-webkit-file-upload-button {
+				visibility: hidden;
+			}
+
+			.custom-file-input::before {
+				content: 'Image File';
+				color: white;
+				display: inline-block;
+				background: #e91e63;
+				border-radius: 2px;
+				padding: 5px 8px;
+				outline: none;
+				white-space: nowrap;
+				-webkit-user-select: none;
+				cursor: pointer;
+				font-weight: 700;
+				font-size: 10pt;
+			}
+
+			.custom-file-input:hover::before {
+				border-color: black;
+			}
+
+			.custom-file-input:active {
+				outline: 0;
+			}
+
+			.custom-file-input:active::before {
+				background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+			}
+
+			.custom2-file-input {
+				color: transparent;
+			}
+
+			.custom2-file-input::-webkit-file-upload-button {
+				visibility: hidden;
+			}
+
+			.custom2-file-input::before {
+				content: 'PDF File';
+				color: white;
+				display: inline-block;
+				background: #e91e63;
+				border-radius: 2px;
+				padding: 5px 8px;
+				outline: none;
+				white-space: nowrap;
+				-webkit-user-select: none;
+				cursor: pointer;
+				font-weight: 700;
+				font-size: 10pt;
+			}
+
+			.custom2-file-input:hover::before {
+				border-color: black;
+			}
+
+			.custom2-file-input:active {
+				outline: 0;
+			}
+
+			.custom2-file-input:active::before {
+				background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+			}
+
+			.card-header {
+				padding: 20px;
+				//border-bottom: 1px solid grey;
+			}
+
+			.custom2-file-input {
+				color: transparent;
+			}
+
+			.custom2-file-input::-webkit-file-upload-button {
+				visibility: hidden;
+			}
+
+			.custom2-file-input::before {
+				content: 'PDF File';
+				color: white;
+				display: inline-block;
+				background: #e91e63;
+				border-radius: 2px;
+				padding: 5px 8px;
+				outline: none;
+				white-space: nowrap;
+				-webkit-user-select: none;
+				cursor: pointer;
+				font-weight: 700;
+				font-size: 10pt;
+			}
+
+			.custom2-file-input:hover::before {
+				border-color: black;
+			}
+
+			.custom2-file-input:active {
+				outline: 0;
+			}
+
+			.custom2-file-input:active::before {
+				background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+			}
+
+			.hascall {
+				background-color: #232323;
+			}
+
+
+			.makecallmenu {
+				position: absolute;
+				top: 20%;
+				left: 30%;
+				-webkit-transform: translateX(-50%) translateY(-50%);
+				transform: translateX(-50%) translateY(-50%);
+				/* min-width: 100%; */
+				/* min-height: 100%; */
+				width: 150px;
+				height: auto;
+				/* z-index: 0; */
+				overflow: hidden;
+			}
+			.overlay-hascall{
+			  position: absolute;
+			  top: 60%;
+			  width: 100%;
+			  text-align: center;
+			  margin-top: 30px;
+			}
+		</style>
+		<link href="css/croppie.css" rel="stylesheet">
+		<script type="text/javascript" src="js/croppie.js"></script>
+		<title>E-PinkCustomer</title>
+		<script>
+			if (screen.width < 500) {
+				//document.getElementsByTagName("BODY")[0] = "";
+				//window.location.href = "https://epink.health/";
+			}
+		</script>
+	</head>
+	<body onload="initApp()">
+		<div id="login" style="display: none">
+			<center>
+				<br>
+				<input type="text" id="username" class="form-control">
+				<br>
+				<input type="password" id="password" class="form-control">
+				<br>
+				<button onclick="setLogindata()" class="btn btn-primary">LOGIN</button>
+			</center>
+		</div>
+		<div id="dashboard" style="display: none">
+			
+			<video id="remoteOpponentVideoElementId" width="100%" poster="img/black.jpg"></video>
+			<div id="constate"></div>
+			<div id="actions" style="display: none">
+				<center>
+					<a id="disconnect" href="index.html">
+						<i class="fas fa-phone white-text text-white fa-2x"></i>
+					</a>
+				</center>
+			</div>
+			<div class="row overlay-hascall">
+				<div class="col s6 center">
+					<video id="myVideoElementId" width="100px" poster="img/black2.jpg"></video>
+				</div>
+				<div class="col s6 center">
+					<a href="index.html" class="btn-floating red white-text btn-large" onclick=""><i class="material-icons white-text medium ">call_end</i></a>
+				</div>
+			</div>
+		</div>
+		<script>
+			var tocall;
+			var doctoruid = 4484713;
+			var patientuid = 4483638;
+			var session;
+
+			function endCall() {
+				location.reload();
+			}
+
+			function logOut() {
+				localStorage.clear();
+				location.reload();
+			}
+			
+
+			function setLogindata() {
+				var userName = document.getElementById("username").value;
+				var userPassword = document.getElementById("password").value;
+				if (userName == "patient") {
+					var params = {
+						login: userName,
+						password: userPassword,
+						opponentid: patientuid
+					};
+				} else {
+					var params = {
+						login: userName,
+						password: userPassword,
+						opponentid: doctoruid
+					};
+				}
+				var prelogin = JSON.stringify(params);
+				localStorage.setItem("cblogin", prelogin);
+				location.reload();
+			}
+			const CREDENTIALS = {
+				appId: 5070,
+				authKey: "JNXS9GRyMGNsUgc",
+				authSecret: "ctzmyKZecd26cJd",
+			};
+			ConnectyCube.init(CREDENTIALS);
+
+			function initApp(){
+				var loginas = JSON.parse(localStorage.getItem("cblogin"));
+				console.log(loginas);
+				if (loginas == null) {
+					document.getElementById("login").style.display = "block";
+					document.getElementById("dashboard").style.display = "none";
+					window.history.back();
+				} else {
+					document.getElementById("login").style.display = "none";
+					document.getElementById("dashboard").style.display = "block";
+					tocall = loginas.opponentid;
+					ConnectyCube.createSession().then((session) => {
+						const userCredentials = {
+							login: loginas.login,
+							password: loginas.password
+						};
+						ConnectyCube.login(userCredentials).then((user) => {
+							console.log(user.id);
+							const userCredentials = {
+								userId: user.id,
+								password: "password",
+							};
+							ConnectyCube.chat.connect(userCredentials).then(() => {
+								console.log("userisconnected");
+								const isConnected = ConnectyCube.chat.isConnected;
+								console.log(isConnected);
+								console.log("is doctor");
+								const calleesIds = [tocall]; // User's ids
+								const sessionType = ConnectyCube.videochat.CallType.VIDEO; // AUDIO is also possible
+								const additionalOptions = {};
+								
+								session = ConnectyCube.videochat.createNewSession(calleesIds, sessionType, additionalOptions);
+								const mediaParams = {
+									audio: true,
+									video: true,
+									options: {
+										muted: true,
+										mirror: true,
+									},
+								};
+								session.getUserMedia(mediaParams).then((localStream) => {
+									session.attachMediaStream("myVideoElementId", localStream);
+									const extension = {};
+									session.call(extension, (error) => {
+										if (error) {
+											console.log(error);
+										} else {
+											console.log(session);
+										}
+									});
+								}).catch((error) => {});
+							}).catch((error) => {});
+						}).catch((error) => {});
+					}).catch((error) => {});
+				}
+			}
+			ConnectyCube.videochat.onAcceptCallListener = function(session, userId, extension) {
+				//document.getElementById("constate").innerHTML = 'Call accepted';
+			};
+			ConnectyCube.videochat.onRemoteStreamListener = function(session, userID, remoteStream) {
+				session.attachMediaStream("remoteOpponentVideoElementId", remoteStream);
+				document.getElementById("disconnect").style.display = "block";
+				document.getElementById("actions").style.display = "block";
+			};
+			ConnectyCube.videochat.onCallListener = function(session, extension) {
+				const mediaParams = {
+					audio: true,
+					video: true,
+					options: {
+						muted: true,
+						mirror: true,
+					},
+				};
+				session.getUserMedia(mediaParams).then((localStream) => {
+					session.attachMediaStream("myVideoElementId", localStream);
+					document.getElementById("constate").innerHTML = 'Someone is calling you. Accepting...';
+					const extensionx = {};
+					session.accept(extensionx);
+				}).catch((error) => {});
+			};
+			ConnectyCube.videochat.onUserNotAnswerListener = function(session, userId) {
+				document.getElementById("constate").innerHTML = 'Call not answered or has been rejected by user';
+				//window.history.back();
+				document.getElementById("disconnect").style.display = "block";
+			};
+			
+			function checkSession(){
+				console.log(session);
+			}
+		</script>
+		 <script type="text/javascript" src="cordova.js"></script>
+	</body>
+</html>
